@@ -84,7 +84,19 @@ def get_da_music_no_file(text_to_search):
 	download_url = get_youtube_url(track_name, artist)
 	print
 	print
-	manual_entry(download_url)
+	print "Edit tag details? (y/n)"
+	entry = raw_input()
+	confirm = False
+	if not entry.strip() or entry.strip().lower() == 'y':
+		while not confirm:
+			track_name, artist, album, album_date, genres = new_tags(track_name, artist, album, album_date, genres)
+			print "Track name:", track_name + '\n', "Artist:", artist + '\n', "Album:", album + '\n', "Album date:", album_date + '\n', "Genre: ", genres
+			print "Confirm? (y/n)"
+			entry = raw_input()
+			if not entry.strip() or entry.strip().lower() == 'y':
+				confirm = True
+	file_name = youtube_download(track_name, download_url, artist)
+	fix_tags(file_name, [duration, track_name, track_id, track_number, cover_art, artist, album, album_date, genres])
 
 def manual_entry(download_url):
 	soup = BeautifulSoup(urllib2.urlopen(download_url).read(), "html.parser")
@@ -102,9 +114,6 @@ def manual_entry(download_url):
 			entry = raw_input()
 			if not entry.strip() or entry.strip().lower() == 'y':
 				confirm = True
-	else:
-		duration, track_id, track_number, cover_art, artist, album, album_date, genres = ('',)*8
-		track_name = title
 	file_name = youtube_download(track_name, download_url, artist)
 	fix_tags(file_name, [duration, track_name, track_id, track_number, cover_art, artist, album, album_date, genres])
 
