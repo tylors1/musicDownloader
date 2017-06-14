@@ -14,7 +14,7 @@ def tag_entry(duration, track_name, track_id, track_number, cover_art, artist, a
 	confirm = False
 	if not entry.strip() or entry.strip().lower() == 'y':
 		while not confirm:
-			track_name, artist, album, album_date, genres = tag_entry(track_name, artist, album, album_date, genres)
+			track_name, artist, album, album_date, genres = new_tags(track_name, artist, album, album_date, genres)
 			print "Track name:", track_name + '\n', "Artist:", artist + '\n', "Album:", album + '\n', "Album date:", album_date + '\n', "Genre: ", genres
 			print "Confirm? (y/n)"
 			entry = raw_input()
@@ -62,3 +62,25 @@ def set_tags(file_name, track_data): # [duration, track_name, track_id, track_nu
 	except:
 		print "Error fetching album art"
 		pass
+
+def new_tags(track_name, artist, album, album_date, genres):
+	print "Enter nothing to keep found details"
+	print "Track name:", track_name
+	track_name = enter_details(track_name)
+	print "Artist:", artist
+	artist = enter_details(artist)
+	print "Album:", album
+	album = enter_details(album)
+	print "Album date:", album_date
+	album_date = enter_details(album_date)
+	print "Genre:", genres
+	genre = enter_details(genres)
+	print track_name, artist, album, album_date, genres
+	return track_name, artist, album, album_date, genres
+
+def enter_details(variable):
+	entry = raw_input()
+	if entry.strip():
+		return entry
+	else:
+		return variable		

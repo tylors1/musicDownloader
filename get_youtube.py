@@ -16,14 +16,14 @@ def get_video_title(download_url):
 def find_url(track_name, artist):
 	count = 0
 	# Try to find YouTube's Topic Channel for the track
-	search_list = get_search_list(track_name + " " + artist + " topic") # urls, durations, titles, channels
+	search_list = get_search_list(track_name + " " + artist + " topic") 
 	for item in search_list:
 		count += 1
 		if "Topic" in item[3] and track_name.lower() in item[2].lower() and "live" not in item[2].lower():
 			if count < 2:
 				return item[0]
-	# No topic channel was found, try other search
-	search_list = get_search_list(track_name + " " + artist) # urls, durations, titles, channels
+	# No Topic channel was found, try other search
+	search_list = get_search_list(track_name + " " + artist) 
 	for item in search_list:
 		if "live" not in item[2].lower() and "karaoke" not in item[2].lower():
 			return item[0]

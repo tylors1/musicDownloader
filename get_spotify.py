@@ -3,11 +3,11 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy.util as util
 import os
 
-os.environ['SPOTIPY_CLIENT_ID']='CLIENT ID HERE'
-os.environ['SPOTIPY_CLIENT_SECRET']='CLIENT SECRET HERE'
+os.environ['SPOTIPY_CLIENT_ID']='CLIENT ID'
+os.environ['SPOTIPY_CLIENT_SECRET']='SECRET CLIENT'
 os.environ['SPOTIPY_REDIRECT_URI']='http://localhost/'
 
-username = 'USERNAME HERE'
+username = 'USERNAME'
 scope = 'user-library-read'
 # scope = ''
 

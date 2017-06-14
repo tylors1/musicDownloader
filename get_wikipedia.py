@@ -5,12 +5,12 @@ import sys
 import wikipedia
 import re
 
-def get_date_genre(track_name, artist):
+def get_date_genre(track_name, artist, album):
 	album_date = ""
 	genre = ""
 	soup = ""
 	found = False
-	print "Searching for album and genre on wikipedia"
+	print "Searching for album date and genre on wikipedia"
 	try:
 		print "Trying track name search"
 		wiki_search = [x.encode('utf-8') for x in wikipedia.search(track_name + " " + artist, results=5)]

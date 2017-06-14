@@ -11,7 +11,7 @@ import get_youtube
 
 
 # client_credentials_manager = SpotifyClientCredentials(client_id='60e52fd7ef4849568a7c057416d33554', client_secret='35bf0fd6643d432c9f0f906c2860f6a3')
-username = 'USERNAME HERE'
+username = 'USERNAME'
 scope = 'user-library-read'
 
 # Keep track failed meta searches
@@ -48,16 +48,13 @@ def get_da_music(text_to_search, tag_check):
 
 #Attempts spotify, then wikipedia
 def get_meta_data(text_to_search, text_to_search_corrected):
-	duration, track_name, track_id, track_number, cover_art, artist, album, album_date, genres = ('',)*9
+	duration, track_name, track_id, track_number, cover_art, artist, album, album_date, genres = (' ',)*9
 	duration, track_name, track_id, track_number, cover_art, artist, album = get_spotify.get_spotify_data(text_to_search, text_to_search_corrected)
 	if not track_name:
 		print "Unable to find meta data from spotify"
 	else:
-		album_date, genres =  get_wikipedia.get_date_genre(track_name, artist)
-	print album_date, genres
+		album_date, genres =  get_wikipedia.get_date_genre(track_name, artist, album)
 	return duration, track_name, track_id, track_number, cover_art, artist, album, album_date, genres
-
-
 
 def main():
 	while True:
@@ -77,6 +74,8 @@ def main():
 				num_lines = sum(1 for line in open(file_name))
 				for count, line in enumerate(f):
 					if len(line) > 1:
+						print
+						print
 						print count, "of", num_lines
 						print line
 						get_da_music(line, False)
